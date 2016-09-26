@@ -1,0 +1,1 @@
+select: "select account_id,account_name,format,ttl,line,token_id,token,description  from dnspod_info where cast(account_id as varchar) like %(account_id)s;"

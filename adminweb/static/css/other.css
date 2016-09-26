@@ -1,0 +1,64 @@
+.box-shadow {
+	padding:8px;  
+	background-color: #fff;  
+	-moz-box-shadow: 2px 2px 5px #000; 
+	-webkit-box-shadow: 2px 2px 5px #000; 
+	box-shadow: 2px 2px 5px #000; 
+}
+
+.box-shadow-1 {
+	display:inline;  
+	border:1px solid #d3c998;  
+	border-radius:2px;  
+	filter:progid:DXImageTransform.Microsoft.Shadow(color='#d3c998', Direction=135,Strength=5);/*for ie6,7,8*/  
+	background-color: #fff;  
+	-moz-box-shadow:2px 2px 5px #000;/*firefox*/  
+	-webkit-box-shadow:2px 2px 5px #000;/*webkit*/  
+	box-shadow:2px 2px 5px #000;/*opera或ie9*/  
+}
+
+.border-1 {
+	border:1px solid #d3c998;  
+}
+
+
+.table-name-fonts-1, .table-name-fonts-2  {
+    font-size: 20px;
+    font-family: ModernKing, 'Source Sans Pro','Helvetica Neue','Helvetica','Arial','sans-serif';
+    text-align: left;
+}
+
+.table-name-fonts-2 { 
+	font-size: 20px;
+}
+
+.font-color-red {
+	color: #000;
+}
+
+@font-face
+{
+	font-family: 'ModernKing';
+	src: url('../fonts/Modern_King.ttf');
+}
+
+.vertical-align-center 
+{/* To center vertically */
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.vertical-alignment-helper 
+{ 
+	display:table; 
+	height: 100%; 
+	width: 100%; 
+}
+
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 25%;
+}

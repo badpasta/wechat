@@ -1,0 +1,23 @@
+---
+#insert: "insert into record_zones values ('%(name)s', nextval('record_zones_seq') + %(time)d, '%(description)s', '%(zgid)s');"
+insert: "insert into record_zones values (%(name)s, nextval(record_zones_seq) + %(time)s, %(description)s, %(zgid)s);"
+
+delete: "delete from record_zones where zid = '%(zid)s';"
+
+update: "update record_zones set zone_name='%(name)s', description='%(description)s, zgid='%(zgid)s' where zid = '%(zid)s';"
+
+select: "select zid, zone_name, zgid, description  from record_zones where cast(zid as varchar) like '%(zid)s';"
+
+select_name: "select zid, zone_name, zgid, description  from record_zones where zone_name like '%(domain_name)s';"
+
+select_view: "select zid, zone_name, zgid, group_name, description from zone_view where zid = '%(zid)s'"
+
+select_view_like: "select zid, zone_name, zgid, group_name, description from zone_view where cast(zid as varchar) like %(zid)s"
+
+select_view_zid: "select zid, zone_name, zgid, group_name, description from zone_view where zid = %(zid)s"
+
+select_view_name: "select zid, zone_name, zgid, group_name, description from zone_view where zone_name = %(domain_name)s"
+
+select_by_group: "select zid, zone_name, file_path from zone_view where group_name = %(group_name)s"
+
+select_num_by_zgid: "select count(1) from record_zones where cast(zgid as varchar) like %(zgid)s"

@@ -1,0 +1,2 @@
+---
+get_aqb_list: "select a.rid, b.rid from (select rid, sub_domain, zone_name, value from record_view where value like '%aqb.so%') as a , (select * from record_view where record_type = 'A') as b where a.zone_name=b.zone_name and a.sub_domain = b.sub_domain and a.rid != b.rid;"

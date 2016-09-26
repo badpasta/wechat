@@ -1,0 +1,5 @@
+---
+insert: "insert into changelog (change_id, option_act, detail, option_at) values (nextval('changelog_seq') + %(time)s, %(option_act)s, %(detail)s, to_timestamp(%(time)s));"
+#insert: "insert into changelog (change_id, option_act, detail, option_at) values (nextval('changelog_seq') + %(time)s, '%(option_act)s', '%(detail)s', to_timestamp('%(time)s'));"
+
+select: "select option_at,option_act,detail  from changelog where cast(change_id as varchar) like '%(change_id)s';"

@@ -1,0 +1,9 @@
+---
+select: "select ptrid, name, zone, description from ptr_zones where ptrid = %(ptrid)s;"
+
+select_like: "select ptrid, name, zone, description from ptr_zones where cast(ptrid as varchar) like %(ptrid)s;"
+
+insert: "insert into ptr_zones values(nextval(ptr_zones_seq) + %(time)s, %(name)s, %(zone)s, %(description)s);"
+#insert: "insert into ptr_zones values(nextval('ptr_zones_seq') + %(time)d, '%(name)s', '%(zone)s', '%(description)s');"
+
+delete: "delete from ptr_zones where ptrid = %(ptrid)s;"
