@@ -31,7 +31,7 @@ class AccessTokenHandler(BaseHandler):
             origin_data['nonce'] = self.get_argument('nonce')
             origin_data['echostr'] = self.get_argument('echostr')
         except:
-            self.wirte('param failed!')
+            self.write('param failed!')
             return
         echostr = origin_data['echostr']
         kw = dict()
