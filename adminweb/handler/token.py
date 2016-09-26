@@ -48,7 +48,7 @@ class AccessTokenHandler(BaseHandler):
         #print sha1_secret
         #print origin_data['signature']
         if sha1_secret == origin_data['signature']:
-            self.write(sha1_secret)
+            self.write(echostr)
         else:
             self.write('error')
             return
