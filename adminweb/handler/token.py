@@ -25,10 +25,14 @@ class AccessTokenHandler(BaseHandler):
     @coroutine
     def get(self):
         origin_data = dict()
-        origin_data['signature'] = self.get_argument('signature')
-        origin_data['timestamp'] = self.get_argument('timestamp')
-        origin_data['nonce'] = self.get_argument('nonce')
-        origin_data['echostr'] = self.get_argument('echostr')
+        try:
+            origin_data['signature'] = self.get_argument('signature')
+            origin_data['timestamp'] = self.get_argument('timestamp')
+            origin_data['nonce'] = self.get_argument('nonce')
+            origin_data['echostr'] = self.get_argument('echostr')
+        except:
+            self.wirte('param failed!')
+            return
         echostr = origin_data['echostr']
         kw = dict()
         sql = 'select token, aeskey, issecret from wechat_info;'
@@ -42,5 +46,5 @@ class AccessTokenHandler(BaseHandler):
             self.write(sha1_secret)
         else:
             self.write('error')
-            
+            return
 
