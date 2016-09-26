@@ -14,7 +14,7 @@ from tornado.options import options
 
 class WebApplication(Application):
     def __init__(self):
-        handlers = [(r"/token", AccessTokenHandler)]
+        handlers = [(r"/api/token", AccessTokenHandler)]
         settings = dict(
                         cookie_secret = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=",
                         #login_url = "/login",

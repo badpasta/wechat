@@ -17,7 +17,6 @@ from tornado.gen import coroutine, Task, Return
 from tornado.httpclient import AsyncHTTPClient
 from functools import partial
 
-import dns.reversename
 import time
 import sys
 import hashlib
@@ -31,8 +30,17 @@ class AccessTokenHandler(BaseHandler):
         origin_data['nonce'] = self.get_argument('nonce')
         origin_data['echostr'] = self.get_argument('echostr')
         echostr = origin_data['echostr']
-        secret = ''.join(origin_data.values())
+        kw = dict()
+        sql = 'select token, aeskey, issecret from wechat_info;'
+        wechat_info = yield Task(self.db.select, sql, **dict())
+        kw['token'] = wechat_info[0]
+        kw['timestamp'] = origin_data['timestamp']
+        kw['nonce'] = origin_data['nonce']
+        secret = ''.join(kw.values())
         sha1_secret = hashlib.sha1(secret).hexdigest()
-        self.write(sha1_secret)
+        if sha1_secret == origin_data['signature']:
+            self.write(sha1_secret)
+        else:
+            self.write('error')
             
 
