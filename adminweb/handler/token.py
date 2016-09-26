@@ -37,11 +37,16 @@ class AccessTokenHandler(BaseHandler):
         kw = dict()
         sql = 'select token, aeskey, issecret from wechat_info;'
         wechat_info = yield Task(self.db.select, sql, **dict())
-        kw['token'] = wechat_info[0]
+        #print wechat_info[0][0].strip()
+        #print 'timestamp:'+origin_data['timestamp']
+        #print origin_data['nonce']
+        kw['token'] = wechat_info[0][0].strip()
         kw['timestamp'] = origin_data['timestamp']
         kw['nonce'] = origin_data['nonce']
-        secret = ''.join(kw.values())
+        secret = ''.join(sorted(kw.values()))
         sha1_secret = hashlib.sha1(secret).hexdigest()
+        #print sha1_secret
+        #print origin_data['signature']
         if sha1_secret == origin_data['signature']:
             self.write(sha1_secret)
         else:
